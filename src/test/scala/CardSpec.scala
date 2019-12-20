@@ -18,4 +18,8 @@ class CardSpec extends WordSpec with MustMatchers {
     assertThrows[IllegalArgumentException](Card("BC"))
   }
 
+  "card provides a human-readable value name" in {
+    assert(Card.valueName(12) == "Queen")
+  }
+
 }

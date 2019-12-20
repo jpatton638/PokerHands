@@ -1,4 +1,10 @@
-case class Card(suit: Char, value: Int)
+case class Card(suit: Char, value: Int) extends Ordered[Card] {
+  def max(card: Card): Card =
+    if(this.value > card.value) this else card
+
+  override def compare(that: Card): Int =
+    this.value - that.value
+}
 
 object Card {
   def apply(input: String): Card = {
@@ -21,5 +27,15 @@ object Card {
         }
       }
     Card(suitOfCard, valueOfCard)
+  }
+
+  def valueName(value: Int): String = {
+    value match {
+      case 14 => "Ace"
+      case 13 => "King"
+      case 12 => "Queen"
+      case 11 => "Jack"
+      case _ => value.toString
+    }
   }
 }
